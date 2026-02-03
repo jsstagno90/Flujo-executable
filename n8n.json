@@ -1,0 +1,2507 @@
+[
+  {
+    "id": "11127",
+    "finished": false,
+    "mode": "manual",
+    "retryOf": null,
+    "retrySuccessId": null,
+    "status": "running",
+    "createdAt": "2026-02-03T13:22:19.723Z",
+    "startedAt": "2026-02-03T13:22:19.781Z",
+    "stoppedAt": null,
+    "deletedAt": null,
+    "workflowId": "2DaaIUkGxLppWrDw",
+    "waitTill": null,
+    "workflowData": {
+      "connections": {
+        "Validar datos de la ia": {
+          "main": [
+            [
+              {
+                "node": "Router – Categoría de feedback",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "Append row in sheet",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Logs – Registrar ejecución (Google Sheets)",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Nuevo feedback (Airtable)": {
+          "main": [
+            [
+              {
+                "node": "DB – Verificar cliente por email (Supabase)",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "DB – Verificar cliente por email (Supabase)": {
+          "main": [
+            [
+              {
+                "node": "Preparar datos – Normalización",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Preparar datos – Normalización": {
+          "main": [
+            [
+              {
+                "node": "IA – Analizar feedback (sentimiento + categoría)",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "IA – Analizar feedback (sentimiento + categoría)": {
+          "main": [
+            [
+              {
+                "node": "Métrica – Estimar tokens IA",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Logs – Registrar ejecución (Google Sheets)",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "IA – Output estructurado": {
+          "ai_outputParser": [
+            [
+              {
+                "node": "IA – Analizar feedback (sentimiento + categoría)",
+                "type": "ai_outputParser",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Router – Categoría de feedback": {
+          "main": [
+            [
+              {
+                "node": "DB – Guardar satisfacción (Airtable)",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "Email – Agradecimiento al cliente",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "IA – Clasificar tema de sugerencia",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "DB – Guardar observación",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "DB – Crear ticket soporte técnico",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "DB – Crear reclamo crítico",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Métrica – Estimar tokens IA": {
+          "main": [
+            [
+              {
+                "node": "Preparar datos – Tokens y prompt",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Preparar datos – Tokens y prompt": {
+          "main": [
+            [
+              {
+                "node": "Validar datos de la ia",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "DB – Guardar consumo de tokens (Airtable)",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Logs – Registrar ejecución (Google Sheets)",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "IA – Clasificar tema de sugerencia": {
+          "main": [
+            [
+              {
+                "node": "DB – Guardar sugerencia cliente",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Modelo IA – Gemini (clasificación tema)": {
+          "ai_languageModel": [
+            [
+              {
+                "node": "IA – Clasificar tema de sugerencia",
+                "type": "ai_languageModel",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "DB – Crear ticket soporte técnico": {
+          "main": [
+            [
+              {
+                "node": "Email – Aviso interno soporte",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "DB – Crear reclamo crítico": {
+          "main": [
+            [
+              {
+                "node": "Email – Contacto inicial reclamo",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Email – Contacto inicial reclamo": {
+          "main": [
+            [
+              {
+                "node": "DB – Marcar cliente contactado",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Google Gemini Chat Model": {
+          "ai_languageModel": [
+            [
+              {
+                "node": "IA – Analizar feedback (sentimiento + categoría)",
+                "type": "ai_languageModel",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "DB – Guardar satisfacción (Airtable)": {
+          "main": [
+            []
+          ]
+        },
+        "Email – Agradecimiento al cliente": {
+          "main": [
+            [
+              {
+                "node": "Call 'My Sub-Workflow 3'",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      },
+      "nodes": [
+        {
+          "parameters": {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 3
+              },
+              "conditions": [
+                {
+                  "id": "2282e9e7-d04c-40bc-a044-f392631ed0c1",
+                  "leftValue": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.sentimiento }}",
+                  "rightValue": "satisfaccion",
+                  "operator": {
+                    "type": "string",
+                    "operation": "notEmpty",
+                    "singleValue": true
+                  }
+                },
+                {
+                  "id": "07e6c479-21a8-459c-b183-0ed640045752",
+                  "leftValue": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.categoria }}",
+                  "rightValue": "",
+                  "operator": {
+                    "type": "string",
+                    "operation": "notEmpty",
+                    "singleValue": true
+                  }
+                },
+                {
+                  "id": "cbd25517-b84f-46a9-8f47-b69ba3eb6b7b",
+                  "leftValue": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.resumen }}",
+                  "rightValue": "",
+                  "operator": {
+                    "type": "string",
+                    "operation": "notEmpty",
+                    "singleValue": true
+                  }
+                },
+                {
+                  "id": "b190a2a8-58df-4381-8c8a-d5e9d762d87b",
+                  "leftValue": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.accion_recomendada }}",
+                  "rightValue": "",
+                  "operator": {
+                    "type": "string",
+                    "operation": "notEmpty",
+                    "singleValue": true
+                  }
+                }
+              ],
+              "combinator": "and"
+            },
+            "looseTypeValidation": false,
+            "options": {}
+          },
+          "type": "n8n-nodes-base.if",
+          "typeVersion": 2.3,
+          "position": [
+            1552,
+            496
+          ],
+          "id": "8a3beb3c-b499-4b22-81e5-ec09cdb8a353",
+          "name": "Validar datos de la ia"
+        },
+        {
+          "parameters": {
+            "pollTimes": {
+              "item": [
+                {
+                  "mode": "everyMinute"
+                }
+              ]
+            },
+            "authentication": "airtableTokenApi",
+            "baseId": {
+              "__rl": true,
+              "value": "appkldgop0dmD3lXJ",
+              "mode": "id"
+            },
+            "tableId": {
+              "__rl": true,
+              "mode": "id",
+              "value": "tblkSPtXhhnTUXN1e"
+            },
+            "triggerField": "Created time",
+            "downloadAttachments": false,
+            "additionalFields": {}
+          },
+          "type": "n8n-nodes-base.airtableTrigger",
+          "typeVersion": 1,
+          "position": [
+            64,
+            704
+          ],
+          "id": "793f4434-c5fd-4620-bc59-d78be4f9debb",
+          "name": "Nuevo feedback (Airtable)",
+          "credentials": {
+            "airtableTokenApi": {
+              "id": "CvvyoZlobIn6SxDt",
+              "name": "Airtable Personal Access Token account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "useCustomSchema": false,
+            "resource": "row",
+            "operation": "getAll",
+            "tableId": "clientes",
+            "returnAll": false,
+            "limit": 30,
+            "filterType": "manual",
+            "matchType": "anyFilter",
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "email",
+                  "condition": "eq",
+                  "keyValue": "={{ $json.fields['Correo electrónico'] }}"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            288,
+            704
+          ],
+          "id": "dd191ddc-9e0a-4ee5-8b48-586666b8c6f3",
+          "name": "DB – Verificar cliente por email (Supabase)",
+          "alwaysOutputData": false,
+          "credentials": {
+            "supabaseApi": {
+              "id": "083G8qfrXyRmvKZm",
+              "name": "Supabase"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "mode": "manual",
+            "duplicateItem": false,
+            "assignments": {
+              "assignments": [
+                {
+                  "id": "f64843e9-17c4-46ba-a77a-321f46f4b1b3",
+                  "name": "Nombre",
+                  "value": "={{ $json.nombre }}",
+                  "type": "string"
+                },
+                {
+                  "id": "3d576c08-96e2-4414-9478-dfffddbccec4",
+                  "name": "Producto",
+                  "value": "={{ $json.producto }}",
+                  "type": "string"
+                },
+                {
+                  "id": "ce29d0c1-9ef4-450e-95c5-ba2984ecb2bc",
+                  "name": "Puntaje",
+                  "value": "={{ $('Nuevo feedback (Airtable)').item.json.fields.Puntaje_NPS }}",
+                  "type": "number"
+                },
+                {
+                  "id": "1ac2b2af-d853-43be-b669-d39cefd8d374",
+                  "name": "Feedback",
+                  "value": "={{ $('Nuevo feedback (Airtable)').item.json.fields['Comentario del cliente'] }}",
+                  "type": "string"
+                },
+                {
+                  "id": "bf3f0117-168d-4b66-a4ce-00453edb4f5d",
+                  "name": "Email",
+                  "value": "={{ $json.email }}",
+                  "type": "string"
+                }
+              ]
+            },
+            "includeOtherFields": false,
+            "options": {}
+          },
+          "type": "n8n-nodes-base.set",
+          "typeVersion": 3.4,
+          "position": [
+            512,
+            704
+          ],
+          "id": "71c0a322-c559-49de-88fd-8f5c532f3799",
+          "name": "Preparar datos – Normalización"
+        },
+        {
+          "parameters": {
+            "aiAgentStarterCallout": "",
+            "promptType": "define",
+            "text": "=Sos un experto en análisis de feedbacks de clientes.\n\nVas a recibir información de un cliente que incluye:\n- Nombre del cliente\n- Producto adquirido\n- Puntaje NPS (0 a 10)\n- Comentario del cliente (feedback)\n\n1. Determiná el sentimiento general del mensaje. \n   Puede ser: positivo, neutro o negativo.\n\n2. Clasificá la categoría del feedback en una de las siguientes:\nsatisfaccion: elogio o experiencia claramente positiva\n\nsugerencia: propuesta de mejora o idea\n\nobservacion: comentario neutro o descriptivo\n\nfalla_tecnica: problema funcional del producto\n\nreclamo: queja fuerte, enojo o mala atención\n\n3. Generá un resumen breve del comentario del cliente (una sola frase).\n\n4. Indicá una acción recomendada inicial según el caso (una sola frase corta)\n\nDatos del cliente:\nNombre: {{ $json.Nombre }}\nProducto: {{ $json.Producto }}\nPuntaje NPS: {{ $json.Puntaje }}\nFeedback: {{ $json.Feedback }}\nemail: {{ $json.Email }}\n",
+            "hasOutputParser": true,
+            "notice": "",
+            "needsFallback": false,
+            "options": {}
+          },
+          "type": "@n8n/n8n-nodes-langchain.agent",
+          "typeVersion": 3,
+          "position": [
+            736,
+            704
+          ],
+          "id": "08a90417-e9ca-4180-98d7-53eeb73e5f7b",
+          "name": "IA – Analizar feedback (sentimiento + categoría)",
+          "alwaysOutputData": false,
+          "retryOnFail": true,
+          "waitBetweenTries": 3000,
+          "onError": "continueErrorOutput"
+        },
+        {
+          "parameters": {
+            "notice": "",
+            "schemaType": "fromJson",
+            "jsonSchemaExample": "{\n  \"sentimiento\": \"\",\n  \"categoria\": \"\",\n  \"resumen\": \"\",\n  \"accion_recomendada\": \"\"\n}",
+            "autoFix": false
+          },
+          "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+          "typeVersion": 1.3,
+          "position": [
+            880,
+            944
+          ],
+          "id": "7e15b205-dd39-4b01-a2d7-c3b7d55b982a",
+          "name": "IA – Output estructurado"
+        },
+        {
+          "parameters": {
+            "mode": "rules",
+            "rules": {
+              "values": [
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "leftValue": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.categoria }}",
+                        "rightValue": "satisfaccion",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals"
+                        },
+                        "id": "57df8f88-4f16-49d2-9259-11896ba0e367"
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "satisfaccion"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "2bd1d3c0-dd4e-4b07-ac78-11658f459110",
+                        "leftValue": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.categoria }}",
+                        "rightValue": "sugerencia",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals",
+                          "name": "filter.operator.equals"
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "sugerencia"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "2bf9c0a4-b0bf-428b-8ecf-7d8bf6b9e0f4",
+                        "leftValue": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.categoria }}",
+                        "rightValue": "observacion",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals",
+                          "name": "filter.operator.equals"
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "observacion"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "8f55841a-c149-4323-972a-bec2923464e0",
+                        "leftValue": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.categoria }}",
+                        "rightValue": "falla_tecnica",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals",
+                          "name": "filter.operator.equals"
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "falla_tecnica"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "899f4608-a70f-42dd-b331-23c8c74e1fec",
+                        "leftValue": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.categoria }}",
+                        "rightValue": "reclamo",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals",
+                          "name": "filter.operator.equals"
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "reclamo"
+                }
+              ]
+            },
+            "looseTypeValidation": false,
+            "options": {}
+          },
+          "type": "n8n-nodes-base.switch",
+          "typeVersion": 3.4,
+          "position": [
+            1776,
+            448
+          ],
+          "id": "d986ef56-53d0-40e8-a12e-041cb24359cd",
+          "name": "Router – Categoría de feedback"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "language": "javaScript",
+            "jsCode": "const items = $input.all();\n\nreturn items.map(item => {\n  // Obtener el texto del prompt y respuesta\n  const promptData = $('Preparar datos – Normalización').item.json;\n  const prompt = `Nombre: ${promptData.Nombre}, Producto: ${promptData.Producto}, Puntaje: ${promptData.Puntaje}, Feedback: ${promptData.Feedback}`;\n  const response = JSON.stringify(item.json.output);\n  \n  // Estimación: 1 token ≈ 4 caracteres (inglés) o 2.5 caracteres (español)\n  const estimatedPromptTokens = Math.ceil(prompt.length / 2.5);\n  const estimatedCompletionTokens = Math.ceil(response.length / 2.5);\n  const estimatedTotalTokens = estimatedPromptTokens + estimatedCompletionTokens;\n\n  return {\n    json: {\n      ...item.json,\n      totalTokens: estimatedTotalTokens,\n      promptTokens: estimatedPromptTokens,\n      completionTokens: estimatedCompletionTokens,\n      executionId: $execution.id\n    }\n  };\n});",
+            "notice": ""
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1104,
+            496
+          ],
+          "id": "f53e1b13-dd49-4abb-adc1-28d779c66a9a",
+          "name": "Métrica – Estimar tokens IA"
+        },
+        {
+          "parameters": {
+            "mode": "manual",
+            "duplicateItem": false,
+            "assignments": {
+              "assignments": [
+                {
+                  "id": "c164e8cb-5a3d-4e6e-bd92-2888df1ae87a",
+                  "name": "totalToken",
+                  "value": "={{ $json.totalTokens }}",
+                  "type": "number"
+                },
+                {
+                  "id": "02dbe8ae-3ec0-4abe-b74c-244778e9bb66",
+                  "name": "promptToken",
+                  "value": "={{ $json.promptTokens }}",
+                  "type": "number"
+                },
+                {
+                  "id": "36cab63e-38b7-4b4b-b92c-8af191b2e3d4",
+                  "name": "completionTokens",
+                  "value": "={{ $json.completionTokens }}",
+                  "type": "number"
+                },
+                {
+                  "id": "a85a9bc5-2b17-4b9d-a715-cdc9536c65c5",
+                  "name": "prompt",
+                  "value": "={{ $('Preparar datos – Normalización').item.json.Feedback }}",
+                  "type": "string"
+                },
+                {
+                  "id": "f46994b7-40e7-4050-8d27-92fef985023d",
+                  "name": "response",
+                  "value": "={{ $json.output }}",
+                  "type": "object"
+                }
+              ]
+            },
+            "includeOtherFields": false,
+            "options": {}
+          },
+          "type": "n8n-nodes-base.set",
+          "typeVersion": 3.4,
+          "position": [
+            1328,
+            496
+          ],
+          "id": "5b2bc167-0876-4490-b5d0-b9368c8516c0",
+          "name": "Preparar datos – Tokens y prompt",
+          "retryOnFail": false,
+          "onError": "continueErrorOutput"
+        },
+        {
+          "parameters": {
+            "authentication": "airtableTokenApi",
+            "resource": "record",
+            "operation": "create",
+            "base": {
+              "__rl": true,
+              "value": "app5lzMORI7pcOP2M",
+              "mode": "list",
+              "cachedResultName": "Categorias ",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M"
+            },
+            "table": {
+              "__rl": true,
+              "value": "tblybr9cGdpJNJAgg",
+              "mode": "list",
+              "cachedResultName": "tokens",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M/tblybr9cGdpJNJAgg"
+            },
+            "columns": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "totalTokens": "={{ $('Métrica – Estimar tokens IA').item.json.totalTokens }}",
+                "promptTokens": "={{ $json.promptToken }}",
+                "completionsTokens": "={{ $('Métrica – Estimar tokens IA').item.json.completionTokens }}",
+                "response": "={{ $json.response.accion_recomendada }}",
+                "prompt": "={{ $json.prompt }}"
+              },
+              "matchingColumns": [],
+              "schema": [
+                {
+                  "id": "id",
+                  "displayName": "id",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": true,
+                  "removed": true
+                },
+                {
+                  "id": "totalTokens",
+                  "displayName": "totalTokens",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "number",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "promptTokens",
+                  "displayName": "promptTokens",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "number",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "completionsTokens",
+                  "displayName": "completionsTokens",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "number",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "precio",
+                  "displayName": "precio",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": true,
+                  "removed": true
+                },
+                {
+                  "id": "prompt",
+                  "displayName": "prompt",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "response",
+                  "displayName": "response",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": false
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.airtable",
+          "typeVersion": 2.1,
+          "position": [
+            1552,
+            304
+          ],
+          "id": "cc58894c-a475-4947-a2e2-7366b5e4cca9",
+          "name": "DB – Guardar consumo de tokens (Airtable)",
+          "credentials": {
+            "airtableTokenApi": {
+              "id": "CvvyoZlobIn6SxDt",
+              "name": "Airtable Personal Access Token account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "preBuiltAgentsCalloutGoogleSheets": "",
+            "authentication": "oAuth2",
+            "resource": "sheet",
+            "operation": "append",
+            "documentId": {
+              "__rl": true,
+              "value": "1ri_DOSWGcb5MIfihF6nHUkuxabIPX6dvZnmp03bC1rk",
+              "mode": "list",
+              "cachedResultName": "Logs",
+              "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ri_DOSWGcb5MIfihF6nHUkuxabIPX6dvZnmp03bC1rk/edit?usp=drivesdk"
+            },
+            "sheetName": {
+              "__rl": true,
+              "value": "gid=0",
+              "mode": "list",
+              "cachedResultName": "Hoja 1",
+              "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ri_DOSWGcb5MIfihF6nHUkuxabIPX6dvZnmp03bC1rk/edit#gid=0"
+            },
+            "columns": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "fecha_procesamiento": "={{ $now.format('yyyy-MM-dd') }}",
+                "nombre_cliente": "={{ $('Preparar datos – Normalización').item.json.Nombre }}",
+                "email_cliente": "={{ $('Preparar datos – Normalización').item.json.Email }}",
+                "categoria_detectada": "=",
+                "camino": "=Revisión manual",
+                "estado": "pendiente_revision",
+                "observacion": "Resultado IA inválido o campos faltantes"
+              },
+              "matchingColumns": [],
+              "schema": [
+                {
+                  "id": "fecha_procesamiento",
+                  "displayName": "fecha_procesamiento",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "nombre_cliente",
+                  "displayName": "nombre_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "email_cliente",
+                  "displayName": "email_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "categoria_detectada",
+                  "displayName": "categoria_detectada",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "camino",
+                  "displayName": "camino",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "accion_ejecutada",
+                  "displayName": "accion_ejecutada",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "estado",
+                  "displayName": "estado",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "observacion",
+                  "displayName": "observacion",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": false
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.googleSheets",
+          "typeVersion": 4.7,
+          "position": [
+            1776,
+            736
+          ],
+          "id": "b29b8934-6462-4eb7-82d6-54b9ca4f0e83",
+          "name": "Logs – Registrar ejecución (Google Sheets)",
+          "credentials": {
+            "googleSheetsOAuth2Api": {
+              "id": "OUZ5iIThYkE1KpSn",
+              "name": "Google Sheets account 2"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "authentication": "airtableTokenApi",
+            "resource": "record",
+            "operation": "create",
+            "base": {
+              "__rl": true,
+              "value": "app5lzMORI7pcOP2M",
+              "mode": "list",
+              "cachedResultName": "Categorias ",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M"
+            },
+            "table": {
+              "__rl": true,
+              "value": "tblvCL5cSjse5R369",
+              "mode": "list",
+              "cachedResultName": "Satisfaccion",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M/tblvCL5cSjse5R369"
+            },
+            "columns": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "agradecimiento_enviado ": true,
+                "nps": "={{ $('Preparar datos – Normalización').item.json.Puntaje }}",
+                "fecha_registro": "={{ $now.toISO() }}",
+                "nombre_cliente": "={{ $('Preparar datos – Normalización').item.json.Nombre }}",
+                "email_cliente": "={{ $('Preparar datos – Normalización').item.json.Email }}",
+                "producto": "={{ $('Preparar datos – Normalización').item.json.Producto }}",
+                "comentario_original": "={{ $('Preparar datos – Normalización').item.json.Feedback }}",
+                "resumen_ia": "={{ $json.output.resumen }}",
+                "accion_ejecutada ": "={{ $json.output.accion_recomendada }}"
+              },
+              "matchingColumns": [],
+              "schema": [
+                {
+                  "id": "fecha_registro",
+                  "displayName": "fecha_registro",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "dateTime",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "nombre_cliente",
+                  "displayName": "nombre_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "email_cliente",
+                  "displayName": "email_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "producto",
+                  "displayName": "producto",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "nps",
+                  "displayName": "nps",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "number",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "comentario_original",
+                  "displayName": "comentario_original",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "resumen_ia",
+                  "displayName": "resumen_ia",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "accion_ejecutada ",
+                  "displayName": "accion_ejecutada ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "agradecimiento_enviado ",
+                  "displayName": "agradecimiento_enviado ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "boolean",
+                  "readOnly": false,
+                  "removed": false
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": false
+            },
+            "options": {
+              "typecast": true
+            }
+          },
+          "type": "n8n-nodes-base.airtable",
+          "typeVersion": 2.1,
+          "position": [
+            2272,
+            48
+          ],
+          "id": "6cd13576-a208-4e69-bf74-8ec0a0a26f01",
+          "name": "DB – Guardar satisfacción (Airtable)",
+          "credentials": {
+            "airtableTokenApi": {
+              "id": "CvvyoZlobIn6SxDt",
+              "name": "Airtable Personal Access Token account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "preBuiltAgentsCalloutGmail": "",
+            "authentication": "oAuth2",
+            "resource": "message",
+            "operation": "send",
+            "sendTo": "=jsstagno@hotmail.com",
+            "subject": "=¡Gracias por tu feedback,{{ $('Preparar datos – Normalización').item.json.Nombre }} ! ",
+            "emailType": "html",
+            "message": "=<!DOCTYPE html>\n<html>\n<head>\n    <style>\n        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #444; margin: 0; padding: 0; }\n        .container { max-width: 600px; margin: 20px auto; border: 1px solid #f0f0f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }\n        .header { background-color: #4CAF50; background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%); color: white; padding: 40px 20px; text-align: center; }\n        .header h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }\n        .content { padding: 40px 30px; background-color: white; text-align: center; }\n        .content p { font-size: 16px; margin-bottom: 20px; color: #555; }\n        .product-box { background-color: #f9f9f9; border-radius: 8px; padding: 15px; margin: 25px 0; border-left: 4px solid #4CAF50; font-style: italic; }\n        .footer { background-color: #f4f4f4; padding: 20px; text-align: center; font-size: 12px; color: #888; }\n        .stars { color: #FFD700; font-size: 20px; margin-bottom: 10px; }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"header\">\n            <h1>¡Gracias por tu feedback!</h1>\n        </div>\n        \n        <div class=\"content\">\n            <div class=\"stars\">★★★★★</div>\n            <p>Hola <strong>{{ $('Preparar datos – Normalización').item.json.Nombre }}</strong>,</p>\n            \n            <p>Gracias por compartir tu experiencia con <strong>BrightHome</strong>.</p>\n            \n            <p>Nos alegra muchísimo saber que estás satisfecho con tu <strong>{{ $('Preparar datos – Normalización').item.json.Producto }}</strong>. Opiniones como la tuya son las que nos motivan a seguir innovando y mejorando cada día.</p>\n            \n            <div class=\"product-box\">\n                \"Tu opinión nos ayuda a iluminar más hogares.\"\n            </div>\n            \n            <p>¡Esperamos verte pronto de nuevo!</p>\n        </div>\n        \n        <div class=\"footer\">\n            Atentamente,<br>\n            <strong>El equipo de BrightHome</strong><br>\n            <small>Este es un correo automático de agradecimiento.</small>\n        </div>\n    </div>\n</body>\n</html>",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.gmail",
+          "typeVersion": 2.2,
+          "position": [
+            2272,
+            -144
+          ],
+          "id": "41390844-0d99-4da8-9ce7-90ec38f1554e",
+          "name": "Email – Agradecimiento al cliente",
+          "webhookId": "6df0994d-2667-40de-822e-2b098e1f0c68",
+          "credentials": {
+            "gmailOAuth2": {
+              "id": "x1SBfcaeLYdxzlCM",
+              "name": "Gmail account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "aiAgentStarterCallout": "",
+            "promptType": "define",
+            "text": "=\"Actúa como un clasificador de temas. Vas a recibir una sugerencia de un cliente. Tu objetivo es devolver ÚNICAMENTE una de estas etiquetas según el tema principal: usabilidad, compatibilidad, precio, rendimiento, diseño, otro. Sugerencia: {{ $('Preparar datos – Normalización').item.json.Feedback }}\"",
+            "hasOutputParser": false,
+            "needsFallback": false,
+            "options": {}
+          },
+          "type": "@n8n/n8n-nodes-langchain.agent",
+          "typeVersion": 3,
+          "position": [
+            2208,
+            240
+          ],
+          "id": "630114f5-ea77-4b59-ab1d-b839dfffd61b",
+          "name": "IA – Clasificar tema de sugerencia"
+        },
+        {
+          "parameters": {
+            "notice": "",
+            "modelName": "models/gemini-2.5-flash",
+            "options": {}
+          },
+          "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+          "typeVersion": 1,
+          "position": [
+            2272,
+            464
+          ],
+          "id": "6bc90408-2449-49ba-b8fe-41fb751ba391",
+          "name": "Modelo IA – Gemini (clasificación tema)",
+          "credentials": {
+            "googlePalmApi": {
+              "id": "gpAoVmIQEN68oWXn",
+              "name": "Google Gemini(PaLM) Api account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "authentication": "airtableTokenApi",
+            "resource": "record",
+            "operation": "create",
+            "base": {
+              "__rl": true,
+              "value": "app5lzMORI7pcOP2M",
+              "mode": "list",
+              "cachedResultName": "Categorias ",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M"
+            },
+            "table": {
+              "__rl": true,
+              "value": "tblfxnOEkzxFyvy9D",
+              "mode": "list",
+              "cachedResultName": "Sugerencias de clientes",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M/tblfxnOEkzxFyvy9D"
+            },
+            "columns": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "revisado_por_equipo": true,
+                "accion_ejecutada ": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.accion_recomendada }}",
+                "tema_sugerencia": "={{ $json.output }}",
+                "categoria_ia": "={{ $json.output }}",
+                "resumen_ia": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.resumen }}",
+                "comentario_original": "={{ $('Preparar datos – Normalización').item.json.Feedback }}",
+                "nps": "={{ $('Preparar datos – Normalización').item.json.Puntaje }}",
+                "producto": "={{ $('Preparar datos – Normalización').item.json.Producto }}",
+                "email_cliente": "={{ $('Preparar datos – Normalización').item.json.Email }}",
+                "nombre_cliente": "={{ $('Preparar datos – Normalización').item.json.Nombre }}",
+                "fecha_registro": "={{ $now.toISO() }}"
+              },
+              "matchingColumns": [],
+              "schema": [
+                {
+                  "id": "fecha_registro",
+                  "displayName": "fecha_registro",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "dateTime",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "nombre_cliente",
+                  "displayName": "nombre_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "email_cliente",
+                  "displayName": "email_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "producto",
+                  "displayName": "producto",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "nps",
+                  "displayName": "nps",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "number",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "comentario_original",
+                  "displayName": "comentario_original",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "resumen_ia",
+                  "displayName": "resumen_ia",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "categoria_ia",
+                  "displayName": "categoria_ia",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "tema_sugerencia",
+                  "displayName": "tema_sugerencia",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "accion_ejecutada ",
+                  "displayName": "accion_ejecutada ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "revisado_por_equipo",
+                  "displayName": "revisado_por_equipo",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "boolean",
+                  "readOnly": false,
+                  "removed": false
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": false
+            },
+            "options": {
+              "typecast": true
+            }
+          },
+          "type": "n8n-nodes-base.airtable",
+          "typeVersion": 2.1,
+          "position": [
+            2560,
+            352
+          ],
+          "id": "4463d028-e29e-4eb6-bb4d-26e26c1b9e81",
+          "name": "DB – Guardar sugerencia cliente",
+          "credentials": {
+            "airtableTokenApi": {
+              "id": "CvvyoZlobIn6SxDt",
+              "name": "Airtable Personal Access Token account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "authentication": "airtableTokenApi",
+            "resource": "record",
+            "operation": "create",
+            "base": {
+              "__rl": true,
+              "value": "app5lzMORI7pcOP2M",
+              "mode": "list",
+              "cachedResultName": "Categorias ",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M"
+            },
+            "table": {
+              "__rl": true,
+              "value": "tbl0K0HAgdNAYMOFO",
+              "mode": "list",
+              "cachedResultName": "observaciones",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M/tbl0K0HAgdNAYMOFO"
+            },
+            "columns": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "seguimiento_necesario ": true,
+                "fecha_registro": "={{ $now.format('yyyy-MM-dd') }}",
+                "nombre_cliente": "={{ $('Preparar datos – Normalización').item.json.Nombre }}",
+                "email_cliente": "={{ $('Preparar datos – Normalización').item.json.Email }}",
+                "producto": "={{ $('Preparar datos – Normalización').item.json.Producto }}",
+                "nps": "={{ $('Preparar datos – Normalización').item.json.Puntaje }}",
+                "comentario_original": "={{ $('Preparar datos – Normalización').item.json.Feedback }}",
+                "resumen_ia": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.resumen }}",
+                "categoria_ia ": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.categoria }}",
+                "accion_ejecutada ": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.accion_recomendada }}"
+              },
+              "matchingColumns": [],
+              "schema": [
+                {
+                  "id": "fecha_registro",
+                  "displayName": "fecha_registro",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "dateTime",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "nombre_cliente",
+                  "displayName": "nombre_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "email_cliente",
+                  "displayName": "email_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "producto",
+                  "displayName": "producto",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "nps",
+                  "displayName": "nps",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "number",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "comentario_original",
+                  "displayName": "comentario_original",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "resumen_ia",
+                  "displayName": "resumen_ia",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "categoria_ia ",
+                  "displayName": "categoria_ia ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "accion_ejecutada ",
+                  "displayName": "accion_ejecutada ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "seguimiento_necesario ",
+                  "displayName": "seguimiento_necesario ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "boolean",
+                  "readOnly": false,
+                  "removed": false
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": false
+            },
+            "options": {
+              "typecast": true
+            }
+          },
+          "type": "n8n-nodes-base.airtable",
+          "typeVersion": 2.1,
+          "position": [
+            2272,
+            640
+          ],
+          "id": "fba83c4e-f8d2-47ba-8537-a723ab60b412",
+          "name": "DB – Guardar observación",
+          "credentials": {
+            "airtableTokenApi": {
+              "id": "CvvyoZlobIn6SxDt",
+              "name": "Airtable Personal Access Token account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "authentication": "airtableTokenApi",
+            "resource": "record",
+            "operation": "create",
+            "base": {
+              "__rl": true,
+              "value": "app5lzMORI7pcOP2M",
+              "mode": "list",
+              "cachedResultName": "Categorias ",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M"
+            },
+            "table": {
+              "__rl": true,
+              "value": "tbllvdTsu28EXsouB",
+              "mode": "list",
+              "cachedResultName": "Soporte técnico",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M/tbllvdTsu28EXsouB"
+            },
+            "columns": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "contactado ": true,
+                "nombre_cliente": "={{ $('Preparar datos – Normalización').item.json.Nombre }}",
+                "email_cliente": "={{ $('Preparar datos – Normalización').item.json.Email }}",
+                "producto": "={{ $('Preparar datos – Normalización').item.json.Producto }}",
+                "nps": "={{ $('Preparar datos – Normalización').item.json.Puntaje }}",
+                "comentario_original": "={{ $('Preparar datos – Normalización').item.json.Feedback }}",
+                "resumen_ia": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.resumen }}",
+                "categoria_ia ": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.categoria }}",
+                "estado_ticket": "abierto",
+                "accion_ejecutada": "={{ $json.output.accion_recomendada }}",
+                "asignado_a ": "={{ ['Mariana Torres', 'Pablo Acosta', 'Leonardo Ruiz'][Math.floor(Math.random() * 3)] }}",
+                "fecha_registro": "={{ $now.format('yyyy-MM-dd') }}"
+              },
+              "matchingColumns": [],
+              "schema": [
+                {
+                  "id": "fecha_registro",
+                  "displayName": "fecha_registro",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "dateTime",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "nombre_cliente",
+                  "displayName": "nombre_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "email_cliente",
+                  "displayName": "email_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "producto",
+                  "displayName": "producto",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "nps",
+                  "displayName": "nps",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "number",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "comentario_original",
+                  "displayName": "comentario_original",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "resumen_ia",
+                  "displayName": "resumen_ia",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "categoria_ia ",
+                  "displayName": "categoria_ia ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "estado_ticket",
+                  "displayName": "estado_ticket",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "abierto",
+                      "value": "abierto"
+                    },
+                    {
+                      "name": "en revisión",
+                      "value": "en revisión"
+                    },
+                    {
+                      "name": "resuelto ",
+                      "value": "resuelto "
+                    }
+                  ],
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "asignado_a ",
+                  "displayName": "asignado_a ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "Mariana Torres",
+                      "value": "Mariana Torres"
+                    },
+                    {
+                      "name": "Pablo Acosta",
+                      "value": "Pablo Acosta"
+                    },
+                    {
+                      "name": "Leonardo Ruiz",
+                      "value": "Leonardo Ruiz"
+                    }
+                  ],
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "accion_ejecutada",
+                  "displayName": "accion_ejecutada",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "contactado ",
+                  "displayName": "contactado ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "boolean",
+                  "readOnly": false,
+                  "removed": false
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": false
+            },
+            "options": {
+              "typecast": true
+            }
+          },
+          "type": "n8n-nodes-base.airtable",
+          "typeVersion": 2.1,
+          "position": [
+            2272,
+            832
+          ],
+          "id": "c84725a0-c364-4ab8-a737-32921256a544",
+          "name": "DB – Crear ticket soporte técnico",
+          "credentials": {
+            "airtableTokenApi": {
+              "id": "CvvyoZlobIn6SxDt",
+              "name": "Airtable Personal Access Token account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "preBuiltAgentsCalloutGmail": "",
+            "authentication": "oAuth2",
+            "resource": "message",
+            "operation": "send",
+            "sendTo": "jsstagno@hotmail.com",
+            "subject": "=Nuevo ticket técnico: {{ $('Preparar datos – Normalización').item.json.Producto }}",
+            "emailType": "html",
+            "message": "=<!DOCTYPE html>\n<html>\n<head>\n    <style>\n        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }\n        .container { border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; max-width: 600px; background-color: #fafafa; }\n        .header { background-color: #d32f2f; color: white; padding: 10px 20px; border-radius: 6px 6px 0 0; margin: -20px -20px 20px -20px; }\n        .label { font-weight: bold; color: #555; }\n        .value { color: #000; margin-bottom: 10px; }\n        .status-badge { background-color: #ff9800; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.9em; font-weight: bold; }\n        .footer { margin-top: 20px; font-size: 0.85em; color: #777; border-top: 1px solid #eee; padding-top: 10px; }\n        .button { display: inline-block; padding: 10px 20px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; margin-top: 15px; }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"header\">\n            <h2>🔧 Nuevo Ticket de Soporte Técnico</h2>\n        </div>\n        \n        <p>Se ha generado un nuevo registro que requiere atención inmediata:</p>\n        \n        <div class=\"label\">Cliente:</div>\n        <div class=\"value\">{{ $('Preparar datos – Normalización').item.json.Nombre }}</div>\n        \n        <div class=\"label\">Producto:</div>\n        <div class=\"value\">{{ $('Preparar datos – Normalización').item.json.Producto }}</div>\n        \n        <div class=\"label\">Resumen de la IA:</div>\n        <div class=\"value\"><em>{{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.resumen }}</em></div>\n        \n        <div class=\"label\">Estado actual:</div>\n        <div class=\"value\"><span class=\"status-badge\">ABIERTO</span></div>\n        \n        <a href=\"https://airtable.com/app5lzMORI7pcOP2M\" class=\"button\">Ver en Airtable</a>\n        \n        <div class=\"footer\">\n            Este es un mensaje automático generado por el sistema de BrightHome.\n        </div>\n    </div>\n</body>\n</html>",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.gmail",
+          "typeVersion": 2.2,
+          "position": [
+            2560,
+            832
+          ],
+          "id": "54a49b03-407d-4a2f-a4c3-ddff71e83ee5",
+          "name": "Email – Aviso interno soporte",
+          "webhookId": "6c6dd9cc-f89f-4f0a-9abb-d61746d84117",
+          "credentials": {
+            "gmailOAuth2": {
+              "id": "x1SBfcaeLYdxzlCM",
+              "name": "Gmail account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "authentication": "airtableTokenApi",
+            "resource": "record",
+            "operation": "create",
+            "base": {
+              "__rl": true,
+              "value": "app5lzMORI7pcOP2M",
+              "mode": "list",
+              "cachedResultName": "Categorias ",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M"
+            },
+            "table": {
+              "__rl": true,
+              "value": "tblMxlzakvFpSeqcE",
+              "mode": "list",
+              "cachedResultName": "reclamo",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M/tblMxlzakvFpSeqcE"
+            },
+            "columns": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "contactado": false,
+                "fecha_registro": "={{ $now.format('yyyy-MM-dd') }}",
+                "nombre_cliente": "={{ $('Preparar datos – Normalización').item.json.Nombre }}",
+                "email_cliente": "={{ $('Preparar datos – Normalización').item.json.Email }}",
+                "producto": "={{ $('Preparar datos – Normalización').item.json.Producto }}",
+                "nps": "={{ $('Preparar datos – Normalización').item.json.Puntaje }}",
+                "comentario_original": "={{ $('Preparar datos – Normalización').item.json.Feedback }}",
+                "resumen_ia": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.resumen }}",
+                "categoria_ia ": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.categoria }}",
+                "estado_ticket": "abierto",
+                "prioridad": "alta",
+                "asignado_a": "={{ ['Lucía Pereyra', 'Marcos Díaz', 'Elena Correa'][Math.floor(Math.random() * 3)] }}",
+                "accion_ejecutada ": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.accion_recomendada }}"
+              },
+              "matchingColumns": [],
+              "schema": [
+                {
+                  "id": "fecha_registro",
+                  "displayName": "fecha_registro",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "dateTime",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "nombre_cliente",
+                  "displayName": "nombre_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "email_cliente",
+                  "displayName": "email_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "producto",
+                  "displayName": "producto",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "nps",
+                  "displayName": "nps",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "number",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "comentario_original",
+                  "displayName": "comentario_original",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "resumen_ia",
+                  "displayName": "resumen_ia",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "categoria_ia ",
+                  "displayName": "categoria_ia ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "estado_ticket",
+                  "displayName": "estado_ticket",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "abierto",
+                      "value": "abierto"
+                    },
+                    {
+                      "name": "en revisión",
+                      "value": "en revisión"
+                    },
+                    {
+                      "name": "cerrado",
+                      "value": "cerrado"
+                    }
+                  ],
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "asignado_a",
+                  "displayName": "asignado_a",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "Lucía Pereyra",
+                      "value": "Lucía Pereyra"
+                    },
+                    {
+                      "name": "Marcos Díaz",
+                      "value": "Marcos Díaz"
+                    },
+                    {
+                      "name": " Elena Correa",
+                      "value": " Elena Correa"
+                    }
+                  ],
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "prioridad",
+                  "displayName": "prioridad",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "alta",
+                      "value": "alta"
+                    },
+                    {
+                      "name": "media",
+                      "value": "media"
+                    },
+                    {
+                      "name": "baja ",
+                      "value": "baja "
+                    }
+                  ],
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "contactado",
+                  "displayName": "contactado",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "boolean",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "accion_ejecutada ",
+                  "displayName": "accion_ejecutada ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": false
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": false
+            },
+            "options": {
+              "typecast": true
+            }
+          },
+          "type": "n8n-nodes-base.airtable",
+          "typeVersion": 2.1,
+          "position": [
+            2272,
+            1024
+          ],
+          "id": "ed5fbd3f-2d82-4eac-af7b-2440725a3b4c",
+          "name": "DB – Crear reclamo crítico",
+          "credentials": {
+            "airtableTokenApi": {
+              "id": "CvvyoZlobIn6SxDt",
+              "name": "Airtable Personal Access Token account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "preBuiltAgentsCalloutGmail": "",
+            "authentication": "oAuth2",
+            "resource": "message",
+            "operation": "send",
+            "sendTo": "jsstagno@hotmail.com",
+            "subject": "=Estamos revisando tu caso, {{ $('Preparar datos – Normalización').item.json.Nombre }}",
+            "emailType": "html",
+            "message": "=<!DOCTYPE html>\n<html>\n<head>\n    <style>\n        body { font-family: Arial, sans-serif; color: #333; }\n        .box { max-width: 550px; margin: auto; padding: 30px; border: 1px solid #ddd; border-radius: 10px; }\n        .header-logo { color: #555; font-size: 20px; font-weight: bold; margin-bottom: 20px; }\n        .footer { margin-top: 30px; font-size: 13px; color: #999; border-top: 1px solid #eee; padding-top: 15px; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <div class=\"header-logo\">BrightHome</div>\n        <p>Hola <strong>{{ $('Preparar datos – Normalización').item.json.Nombre }}</strong>,</p>\n        <p>Lamentamos sinceramente los inconvenientes que has tenido con tu <strong>{{ $('Preparar datos – Normalización').item.json.Producto }}</strong>.</p>\n        <p>Queremos que sepas que <strong>tu caso ya ha sido priorizado</strong>. Nuestro equipo de atención al cliente está revisando los detalles y se comunicará con vos a la brevedad para darte una solución.</p>\n        <p>Gracias por tu paciencia y por ayudarnos a mejorar.</p>\n        <div class=\"footer\">\n            Atentamente,<br>\n            <strong>El equipo de BrightHome</strong>\n        </div>\n    </div>\n</body>\n</html>",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.gmail",
+          "typeVersion": 2.2,
+          "position": [
+            2560,
+            1024
+          ],
+          "id": "db041d0c-711d-4168-9e6e-c93cb5d60284",
+          "name": "Email – Contacto inicial reclamo",
+          "webhookId": "36c67dcb-c3c7-4735-9ada-33fc09af4800",
+          "credentials": {
+            "gmailOAuth2": {
+              "id": "x1SBfcaeLYdxzlCM",
+              "name": "Gmail account"
+            }
+          },
+          "onError": "continueErrorOutput"
+        },
+        {
+          "parameters": {
+            "authentication": "airtableTokenApi",
+            "resource": "record",
+            "operation": "update",
+            "base": {
+              "__rl": true,
+              "value": "app5lzMORI7pcOP2M",
+              "mode": "list",
+              "cachedResultName": "Categorias ",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M"
+            },
+            "table": {
+              "__rl": true,
+              "value": "tblMxlzakvFpSeqcE",
+              "mode": "list",
+              "cachedResultName": "reclamo",
+              "cachedResultUrl": "https://airtable.com/app5lzMORI7pcOP2M/tblMxlzakvFpSeqcE"
+            },
+            "columns": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "contactado": true,
+                "id": "={{ $('DB – Crear reclamo crítico').item.json.id }}"
+              },
+              "matchingColumns": [
+                "id"
+              ],
+              "schema": [
+                {
+                  "id": "id",
+                  "displayName": "id",
+                  "required": false,
+                  "defaultMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": true,
+                  "removed": false
+                },
+                {
+                  "id": "fecha_registro",
+                  "displayName": "fecha_registro",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "dateTime",
+                  "readOnly": false,
+                  "removed": true
+                },
+                {
+                  "id": "nombre_cliente",
+                  "displayName": "nombre_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": true
+                },
+                {
+                  "id": "email_cliente",
+                  "displayName": "email_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": true
+                },
+                {
+                  "id": "producto",
+                  "displayName": "producto",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": true
+                },
+                {
+                  "id": "nps",
+                  "displayName": "nps",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "number",
+                  "readOnly": false,
+                  "removed": true
+                },
+                {
+                  "id": "comentario_original",
+                  "displayName": "comentario_original",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": true
+                },
+                {
+                  "id": "resumen_ia",
+                  "displayName": "resumen_ia",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": true
+                },
+                {
+                  "id": "categoria_ia ",
+                  "displayName": "categoria_ia ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": true
+                },
+                {
+                  "id": "estado_ticket",
+                  "displayName": "estado_ticket",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "abierto",
+                      "value": "abierto"
+                    },
+                    {
+                      "name": "en revisión",
+                      "value": "en revisión"
+                    },
+                    {
+                      "name": "cerrado",
+                      "value": "cerrado"
+                    }
+                  ],
+                  "readOnly": false,
+                  "removed": true
+                },
+                {
+                  "id": "asignado_a",
+                  "displayName": "asignado_a",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "Lucía Pereyra",
+                      "value": "Lucía Pereyra"
+                    },
+                    {
+                      "name": "Marcos Díaz",
+                      "value": "Marcos Díaz"
+                    },
+                    {
+                      "name": " Elena Correa",
+                      "value": " Elena Correa"
+                    }
+                  ],
+                  "readOnly": false,
+                  "removed": true
+                },
+                {
+                  "id": "prioridad",
+                  "displayName": "prioridad",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "alta",
+                      "value": "alta"
+                    },
+                    {
+                      "name": "media",
+                      "value": "media"
+                    },
+                    {
+                      "name": "baja ",
+                      "value": "baja "
+                    }
+                  ],
+                  "readOnly": false,
+                  "removed": true
+                },
+                {
+                  "id": "contactado",
+                  "displayName": "contactado",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "boolean",
+                  "readOnly": false,
+                  "removed": false
+                },
+                {
+                  "id": "accion_ejecutada ",
+                  "displayName": "accion_ejecutada ",
+                  "required": false,
+                  "defaultMatch": false,
+                  "canBeUsedToMatch": true,
+                  "display": true,
+                  "type": "string",
+                  "readOnly": false,
+                  "removed": true
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": false
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.airtable",
+          "typeVersion": 2.1,
+          "position": [
+            2784,
+            1024
+          ],
+          "id": "89a0dd63-80ec-4b72-99cf-16a8972bd4b9",
+          "name": "DB – Marcar cliente contactado",
+          "credentials": {
+            "airtableTokenApi": {
+              "id": "CvvyoZlobIn6SxDt",
+              "name": "Airtable Personal Access Token account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "notice": "",
+            "modelName": "models/gemini-2.5-flash",
+            "options": {
+              "temperature": 0.5,
+              "topP": 0.5
+            }
+          },
+          "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+          "typeVersion": 1,
+          "position": [
+            736,
+            944
+          ],
+          "id": "9d556a43-1e30-4502-8b62-273e44bf0b12",
+          "name": "Google Gemini Chat Model",
+          "credentials": {
+            "googlePalmApi": {
+              "id": "gpAoVmIQEN68oWXn",
+              "name": "Google Gemini(PaLM) Api account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "preBuiltAgentsCalloutGoogleSheets": "",
+            "authentication": "oAuth2",
+            "resource": "sheet",
+            "operation": "append",
+            "documentId": {
+              "__rl": true,
+              "value": "1ri_DOSWGcb5MIfihF6nHUkuxabIPX6dvZnmp03bC1rk",
+              "mode": "list",
+              "cachedResultName": "Logs",
+              "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ri_DOSWGcb5MIfihF6nHUkuxabIPX6dvZnmp03bC1rk/edit?usp=drivesdk"
+            },
+            "sheetName": {
+              "__rl": true,
+              "value": "gid=0",
+              "mode": "list",
+              "cachedResultName": "Hoja 1",
+              "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ri_DOSWGcb5MIfihF6nHUkuxabIPX6dvZnmp03bC1rk/edit#gid=0"
+            },
+            "columns": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "fecha_procesamiento": "={{ $now.format('yyyy-MM-dd HH:mm') }}",
+                "nombre_cliente": "={{ $('Preparar datos – Normalización').item.json.Nombre }}",
+                "email_cliente": "={{ $('Preparar datos – Normalización').item.json.Email }}",
+                "categoria_detectada": "={{ $('IA – Analizar feedback (sentimiento + categoría)').item.json.output.categoria }}",
+                "accion_ejecutada": "={{ $json.response.accion_recomendada }}",
+                "camino": "={{ $json.response.categoria }}",
+                "estado": "Procesado"
+              },
+              "matchingColumns": [],
+              "schema": [
+                {
+                  "id": "fecha_procesamiento",
+                  "displayName": "fecha_procesamiento",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "nombre_cliente",
+                  "displayName": "nombre_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "email_cliente",
+                  "displayName": "email_cliente",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "categoria_detectada",
+                  "displayName": "categoria_detectada",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "camino",
+                  "displayName": "camino",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "accion_ejecutada",
+                  "displayName": "accion_ejecutada",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "estado",
+                  "displayName": "estado",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "observacion",
+                  "displayName": "observacion",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": false
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.googleSheets",
+          "typeVersion": 4.7,
+          "position": [
+            1776,
+            256
+          ],
+          "id": "a5762003-2b3f-4369-a002-256ebc01d96e",
+          "name": "Append row in sheet",
+          "credentials": {
+            "googleSheetsOAuth2Api": {
+              "id": "OUZ5iIThYkE1KpSn",
+              "name": "Google Sheets account 2"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "operation": "call_workflow",
+            "source": "database",
+            "workflowId": {
+              "__rl": true,
+              "value": "8Y6kLpb04EjRZxEG",
+              "mode": "list",
+              "cachedResultUrl": "/workflow/8Y6kLpb04EjRZxEG",
+              "cachedResultName": "My Sub-Workflow 3"
+            },
+            "workflowInputs": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "ID": "={{ $execution.id }}"
+              },
+              "matchingColumns": [
+                "ID"
+              ],
+              "schema": [
+                {
+                  "id": "ID",
+                  "displayName": "ID",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string",
+                  "removed": false
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": true
+            },
+            "mode": "once",
+            "options": {
+              "waitForSubWorkflow": false
+            }
+          },
+          "type": "n8n-nodes-base.executeWorkflow",
+          "typeVersion": 1.3,
+          "position": [
+            2480,
+            -144
+          ],
+          "id": "bc3a859f-60a2-41be-9ddd-19b513e09b95",
+          "name": "Call 'My Sub-Workflow 3'"
+        }
+      ],
+      "name": "Wf 1",
+      "settings": {
+        "executionOrder": "v1",
+        "timeSavedMode": "fixed",
+        "callerPolicy": "none",
+        "availableInMCP": false
+      },
+      "id": "2DaaIUkGxLppWrDw"
+    },
+    "customData": {}
+  }
+]
